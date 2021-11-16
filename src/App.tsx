@@ -8,6 +8,7 @@ import {getCurrentMonth} from './helpers/dataFilter'
 import {filterListByMonth} from './helpers/dataFilter'
 import {TableArea} from './components/TableArea'
 import { InfoArea } from './components/InfoArea'
+import {InputArea} from './components/InputArea'
 const App = () => {
   const [list, setList] = useState(items);
   const [filteredList, setFilteredList] = useState<Item[]>([]);
@@ -38,6 +39,12 @@ const handleMonthChange = (newMonth: string) => {
   setCurrentMonth(newMonth);
 }
 
+const handleAddItem = (item: Item) => {
+  let newList = [...list, item];
+  newList.push(item);
+  setList(newList);
+}
+
   return (
     <C.Container>
       <C.Header>
@@ -55,7 +62,7 @@ const handleMonthChange = (newMonth: string) => {
 
       {/* Area de inserção */}
 
-
+      <InputArea onAdd={handleAddItem} />
 
       {/* Area de itens */}
       <TableArea list={filteredList} />
